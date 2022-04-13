@@ -393,6 +393,10 @@ class MockLoader
       # routing_table
       "netstat -rn" => cmd.call("netstat-rn-linux"),
       %{sh -c 'type "netstat"'} => empty.call,
+      # linux_audit_system
+      "/usr/sbin/auditctl -s | grep enabled" => cmd.call("auditctl-s-enabled"),
+      "/usr/sbin/auditctl -s | grep pid" => cmd.call("auditctl-s-pid"),
+      %{sh -c 'type "/usr/sbin/auditctl"'} => empty.call,
       # apache_conf
       "sh -c 'find /etc/apache2/ports.conf -type f -maxdepth 1'" => cmd.call("find-apache2-ports-conf"),
       "sh -c 'find /etc/httpd/conf.d/*.conf -type f -maxdepth 1'" => cmd.call("find-httpd-ssl-conf"),
